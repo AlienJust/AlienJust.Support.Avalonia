@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
-using System.Windows.Data;
+using Avalonia.Data.Converters;
+using Avalonia.Media;
 
 namespace AlienJust.Support.Wpf.Converters {
     public class NullableBooleanToColorsConverter : IValueConverter
