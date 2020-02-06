@@ -1,54 +1,67 @@
 ﻿using System;
-using System.Windows;
+using System.Threading.Tasks;
+using Avalonia.Controls;
 using AlienJust.Support.UI.Contracts;
-
+using MessageBox.Avalonia;
+using MessageBox.Avalonia.DTO;
+using MessageBox.Avalonia.Enums;
 namespace AlienJust.Support.Avalonia
 {
-    /*
-    public sealed class AvaloniaWindowSystem : IWindowSystem
+
+    public sealed class AvaloniaWindowSystem : IWindowSystemAsync
     {
-        public string ShowOpenFileDialog(string dialogTitle, string filter)
-        {
-            var dialog = new OpenFileDialog { Title = dialogTitle, Filter = filter };
-            var result = dialog.ShowDialog();
+        private Window _window;
 
-            if (result != null && result.Value)
+        public AvaloniaWindowSystem(Window window)
+        {
+            _window = window;
+        }
+        public async Task<string> ShowOpenFileDialogAsync(string dialogTitle, string filter)
+        {
+            // TODO: Filters support (List<FileDialogFilter>)
+            var dialog = new OpenFileDialog { Title = dialogTitle /*,Filters = filter */};
+            var result = await dialog.ShowAsync(_window);
+
+            if (result != null && result.Length > 0)
             {
-                return dialog.FileName;
+                return result[0];
             }
             return null;
         }
 
-        public string ShowSaveFileDialog(string dialogTitle, string filter)
+        public async Task<string> ShowSaveFileDialogAsync(string dialogTitle, string filter)
         {
-            var dialog = new SaveFileDialog { Title = dialogTitle, Filter = filter };
-            var result = dialog.ShowDialog();
-
-            if (result != null && result.Value)
-            {
-                return dialog.FileName;
-            }
-            return null;
+            var dialog = new SaveFileDialog { Title = dialogTitle /*, Filters = filter */};
+            return await dialog.ShowAsync(_window);
         }
 
-        public void ShowMessageBox(string message, string caption)
+        public async Task ShowMessageBoxAsync(string message, string caption)
         {
-            MessageBox.Show(message, caption);
+            var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(caption, message);
+            await messageBoxStandardWindow.Show();
         }
 
-        public BinaryChoise ShowYesNoDialog(string message, string caption)
+        public async Task<BinaryChoise> ShowYesNoDialogAsync(string message, string caption)
         {
-            var result = MessageBox.Show(message, caption, MessageBoxButton.YesNo);
+            var msBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(
+                new MessageBoxStandardParams
+                {
+                    ButtonDefinitions = ButtonEnum.YesNo,
+                    ContentTitle = caption,
+                    ContentMessage = message,
+                    Icon = Icon.Info,
+                    Style = Style.UbuntuLinux
+                });
+            var result = await msBoxStandardWindow.Show();
             switch (result)
             {
-                case MessageBoxResult.Yes:
+                case ButtonResult.Yes:
                     return BinaryChoise.Yes;
-                case MessageBoxResult.No:
+                case ButtonResult.No:
                     return BinaryChoise.No;
                 default:
                     throw new Exception("Unexpected dialog result");
             }
         }
     }
-    */
 }
