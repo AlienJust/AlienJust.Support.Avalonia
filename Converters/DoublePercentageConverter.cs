@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Data.Converters;
 
-namespace AlienJust.Support.Wpf.Converters
+namespace AlienJust.Support.Avalonia.Converters
 {
     public class DoublePercentageConverter : IValueConverter
     {

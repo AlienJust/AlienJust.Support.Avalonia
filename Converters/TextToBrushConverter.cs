@@ -3,7 +3,7 @@ using System.Globalization;
 using Avalonia.Data.Converters;
 using Avalonia.Media;
 
-namespace AlienJust.Support.Wpf.Converters
+namespace AlienJust.Support.Avalonia.Converters
 {
 	public sealed class TextToBrushConverter : IValueConverter {
 

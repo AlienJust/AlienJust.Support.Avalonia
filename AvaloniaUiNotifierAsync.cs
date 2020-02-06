@@ -15,7 +15,7 @@ namespace AlienJust.Support.Avalonia
 
         public void Notify(Action notifyAction)
         {
-            _dispatcher.BeginInvoke(notifyAction);
+            _dispatcher.InvokeAsync(notifyAction);
         }
     }
 }

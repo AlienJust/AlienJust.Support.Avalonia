@@ -1,4 +1,4 @@
-namespace AlienJust.Support.Wpf.Converters
+namespace AlienJust.Support.Avalonia.Converters
 {
     public enum Colors
     {

@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Avalonia.Data.Converters;
 
-namespace AlienJust.Support.Wpf.Converters
+namespace AlienJust.Support.Avalonia.Converters
 {
     public class BooleanToTextConverter : IValueConverter
     {

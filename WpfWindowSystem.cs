@@ -2,8 +2,9 @@
 using System.Windows;
 using AlienJust.Support.UI.Contracts;
 
-namespace AlienJust.Support.Wpf
+namespace AlienJust.Support.Avalonia
 {
+    /*
     public sealed class AvaloniaWindowSystem : IWindowSystem
     {
         public string ShowOpenFileDialog(string dialogTitle, string filter)
@@ -49,4 +50,5 @@ namespace AlienJust.Support.Wpf
             }
         }
     }
+    */
 }

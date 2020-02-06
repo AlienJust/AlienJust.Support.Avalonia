@@ -1,76 +1,80 @@
-﻿namespace AlienJust.Support.Wpf.Converters
+﻿using System;
+using AvaColors = Avalonia.Media.Colors;
+using AvaColor = Avalonia.Media.Color;
+
+namespace AlienJust.Support.Avalonia.Converters
 {
     static class ColorsConverter
-    {
-        public static Avalonia.Media.Color Convert(Colors color)
+    {        
+        public static AvaColor Convert(Colors color)
         {
             switch (color)
             {
                 case Colors.Red:
-                    return Avalonia.Media.Colors.Red;
+                    return AvaColors.Red;
                 case Colors.Blue:
-                    return Avalonia.Media.Colors.Blue;
+                    return AvaColors.Blue;
                 case Colors.RoyalBlue:
-                    return Avalonia.Media.Colors.RoyalBlue;
+                    return AvaColors.RoyalBlue;
                 case Colors.DeepSkyBlue:
-                    return Avalonia.Media.Colors.DeepSkyBlue;
+                    return AvaColors.DeepSkyBlue;
                 case Colors.LightSkyBlue:
-                    return Avalonia.Media.Colors.LightSkyBlue;
+                    return AvaColors.LightSkyBlue;
                 case Colors.DodgerBlue:
-                    return Avalonia.Media.Colors.DodgerBlue;
+                    return AvaColors.DodgerBlue;
                 case Colors.SkyBlue:
-                    return Avalonia.Media.Colors.SkyBlue;
+                    return AvaColors.SkyBlue;
                 case Colors.SteelBlue:
-                    return Avalonia.Media.Colors.SteelBlue;
+                    return AvaColors.SteelBlue;
                 case Colors.CornflowerBlue:
-                    return Avalonia.Media.Colors.CornflowerBlue;
+                    return AvaColors.CornflowerBlue;
                 case Colors.LightBlue:
-                    return Avalonia.Media.Colors.LightBlue;
+                    return AvaColors.LightBlue;
 
                 case Colors.Green:
-                    return Avalonia.Media.Colors.Green;
+                    return AvaColors.Green;
 
                 case Colors.Black:
-                    return Avalonia.Media.Colors.Black;
+                    return AvaColors.Black;
                 case Colors.Transparent:
-                    return Avalonia.Media.Colors.Transparent;
+                    return AvaColors.Transparent;
                 case Colors.White:
-                    return Avalonia.Media.Colors.White;
+                    return AvaColors.White;
 
                 case Colors.Orange:
-                    return Avalonia.Media.Colors.Orange;
+                    return AvaColors.Orange;
                 case Colors.OrangeRed:
-                    return Avalonia.Media.Colors.OrangeRed;
+                    return AvaColors.OrangeRed;
                 case Colors.Firebrick:
-                    return Avalonia.Media.Colors.Firebrick;
+                    return AvaColors.Firebrick;
 
                 case Colors.Gray:
-                    return Avalonia.Media.Colors.Gray;
+                    return AvaColors.Gray;
                 case Colors.DarkGray:
-                    return Avalonia.Media.Colors.DarkGray;
+                    return AvaColors.DarkGray;
                 case Colors.LightGray:
-                    return Avalonia.Media.Colors.LightGray;
+                    return AvaColors.LightGray;
 
                 case Colors.Lime:
-                    return Avalonia.Media.Colors.Lime;
+                    return AvaColors.Lime;
                 case Colors.LimeGreen:
-                    return Avalonia.Media.Colors.LimeGreen;
+                    return AvaColors.LimeGreen;
                 case Colors.YellowGreen:
-                    return Avalonia.Media.Colors.YellowGreen;
+                    return AvaColors.YellowGreen;
                 case Colors.Yellow:
-                    return Avalonia.Media.Colors.Yellow;
+                    return AvaColors.Yellow;
 
                 case Colors.PaleVioletRed:
-                    return Avalonia.Media.Colors.PaleVioletRed;
+                    return AvaColors.PaleVioletRed;
                 case Colors.IndianRed:
-                    return Avalonia.Media.Colors.IndianRed;
+                    return AvaColors.IndianRed;
 
                 case Colors.Magenta:
-                    return Avalonia.Media.Colors.Magenta;
+                    return AvaColors.Magenta;
                 case Colors.Indigo:
-                    return Avalonia.Media.Colors.Indigo;
+                    return AvaColors.Indigo;
                 case Colors.BlueViolet:
-                    return Avalonia.Media.Colors.BlueViolet;
+                    return AvaColors.BlueViolet;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(color));

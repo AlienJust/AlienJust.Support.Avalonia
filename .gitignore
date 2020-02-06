@@ -82,7 +82,7 @@ StyleCopReport.xml
 *.tlh
 *.tmp
 *.tmp_proj
-*_wpftmp.csproj
+*_Avaloniatmp.csproj
 *.log
 *.vspscc
 *.vssscc
