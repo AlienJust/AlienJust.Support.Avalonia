@@ -8,7 +8,7 @@ namespace AlienJust.Support.Avalonia.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is Colors color)
+            if (value is AlienJust.Support.UI.Contracts.Colors color)
             {
                 return ColorsConverter.Convert(color);
             }
