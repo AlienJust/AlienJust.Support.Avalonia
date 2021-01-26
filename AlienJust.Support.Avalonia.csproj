@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>2020 Alexey Debelov</Copyright>
     <Description>Some stuff for Avalonia</Description>
-    <Version>0.10.0-rc1-1</Version>
+    <Version>0.10.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AlienJust.Support.Mvvm" Version="1.0.3"/>
     <PackageReference Include="AlienJust.Support.UI.Contracts" Version="1.0.4"/>
     <PackageReference Include="AlienJust.Support.Concurrent.Contracts" Version="1.0.3"/>
-    <PackageReference Include="Avalonia" Version="0.10.0-rc1"/>
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.0-rc1"/>
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0-rc1 "/>
-    <PackageReference Include="MessageBox.Avalonia" Version="0.10.7-rc1 "/>
+    <PackageReference Include="Avalonia" Version="0.10.0"/>
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.0"/>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0"/>
+    <PackageReference Include="MessageBox.Avalonia" Version="1.0.1"/>
   </ItemGroup>
 </Project>
