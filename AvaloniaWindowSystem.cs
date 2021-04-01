@@ -5,6 +5,8 @@ using AlienJust.Support.UI.Contracts;
 using MessageBox.Avalonia;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Enums;
+using System.Collections.Generic;
+
 namespace AlienJust.Support.Avalonia
 {
 
@@ -31,7 +33,19 @@ namespace AlienJust.Support.Avalonia
 
         public async Task<string> ShowSaveFileDialogAsync(string dialogTitle, string filter)
         {
-            var dialog = new SaveFileDialog { Title = dialogTitle /*, Filters = filter */};
+            var parts = filter.Split('|');
+            var filters = new List<FileDialogFilter>();
+            if (parts.Length %2 == 0)
+            {
+                for (int i = 0; i < parts.Length; i += 2)
+                {
+                    var f = new FileDialogFilter();
+                    f.Name = parts[i];
+                    f.Extensions = new List<string>{parts[i + 1]};
+                    filters.Add(f);
+                }
+            }
+            var dialog = new SaveFileDialog { Title = dialogTitle, Filters = filters};
             return await dialog.ShowAsync(_window);
         }
 
