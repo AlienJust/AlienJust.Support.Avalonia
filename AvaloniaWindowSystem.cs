@@ -53,7 +53,7 @@ namespace AlienJust.Support.Avalonia
             return await dialog.ShowAsync(_window);
         }
 
-        public async Task<string> ShowOpenDirectoryDialogAsync(string dialogTitle, string defaultDirectory = null)
+        public async Task<string> ShowOpenFolderDialogAsync(string dialogTitle, string defaultDirectory = null)
         {
             var dialog = new OpenFolderDialog { Title = dialogTitle };
             if (defaultDirectory != null) dialog.Directory = defaultDirectory;
