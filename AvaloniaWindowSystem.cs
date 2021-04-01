@@ -18,20 +18,8 @@ namespace AlienJust.Support.Avalonia
         {
             _window = window;
         }
-        public async Task<string> ShowOpenFileDialogAsync(string dialogTitle, string filter)
-        {
-            // TODO: Filters support (List<FileDialogFilter>)
-            var dialog = new OpenFileDialog { Title = dialogTitle /*,Filters = filter */};
-            var result = await dialog.ShowAsync(_window);
 
-            if (result != null && result.Length > 0)
-            {
-                return result[0];
-            }
-            return null;
-        }
-
-        public async Task<string> ShowSaveFileDialogAsync(string dialogTitle, string filter)
+        private List<FileDialogFilter> ParseFilters(string filter)
         {
             var parts = filter.Split('|');
             var filters = new List<FileDialogFilter>();
@@ -45,7 +33,37 @@ namespace AlienJust.Support.Avalonia
                     filters.Add(f);
                 }
             }
-            var dialog = new SaveFileDialog { Title = dialogTitle, Filters = filters};
+            return filters;
+        }
+        public async Task<string> ShowOpenFileDialogAsync(string dialogTitle, string filter)
+        {
+            var dialog = new OpenFileDialog { Title = dialogTitle, Filters = ParseFilters(filter) };
+            var result = await dialog.ShowAsync(_window);
+
+            if (result != null && result.Length > 0)
+            {
+                return result[0];
+            }
+            return null;
+        }
+
+        public async Task<string[]> ShowOpenFilesDialogAsync(string dialogTitle, string filter)
+        {
+            var dialog = new OpenFileDialog { Title = dialogTitle, Filters = ParseFilters(filter) };
+            return await dialog.ShowAsync(_window);
+        }
+
+        public async Task<string> ShowOpenDirectoryDialogAsync(string dialogTitle, string defaultDirectory = null)
+        {
+            var dialog = new OpenFolderDialog { Title = dialogTitle };
+            if (defaultDirectory != null) dialog.Directory = defaultDirectory;
+
+            return await dialog.ShowAsync(_window);
+        }
+
+        public async Task<string> ShowSaveFileDialogAsync(string dialogTitle, string filter)
+        {
+            var dialog = new SaveFileDialog { Title = dialogTitle, Filters = ParseFilters(filter) };
             return await dialog.ShowAsync(_window);
         }
 
