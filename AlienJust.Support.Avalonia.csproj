@@ -4,17 +4,17 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-    <Copyright>2020 Alexey Debelov</Copyright>
+    <Copyright>2021 Alexey Debelov</Copyright>
     <Description>Some stuff for Avalonia</Description>
-    <Version>0.10.2-release1</Version>
+    <Version>0.10.4-release1</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AlienJust.Support.Mvvm" Version="1.0.3"/>
     <PackageReference Include="AlienJust.Support.UI.Contracts" Version="1.0.6"/>
     <PackageReference Include="AlienJust.Support.Concurrent.Contracts" Version="1.0.3"/>
-    <PackageReference Include="Avalonia" Version="0.10.2"/>
-    <PackageReference Include="Avalonia.Desktop" Version="0.10.2"/>
-    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.2"/>
-    <PackageReference Include="MessageBox.Avalonia" Version="1.1.2"/>
+    <PackageReference Include="Avalonia" Version="0.10.4"/>
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.4"/>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.4"/>
+    <PackageReference Include="MessageBox.Avalonia" Version="1.2.0"/>
   </ItemGroup>
 </Project>
