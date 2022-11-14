@@ -65,6 +65,7 @@ namespace AlienJust.Support.Avalonia
         {
             var dialog = new SaveFileDialog { Title = dialogTitle, Filters = ParseFilters(filter) };
             return await dialog.ShowAsync(_window);
+            
         }
 
         public async Task ShowMessageBoxAsync(string message, string caption)
@@ -82,7 +83,7 @@ namespace AlienJust.Support.Avalonia
                     ContentTitle = caption,
                     ContentMessage = message,
                     Icon = Icon.Info,
-                    Style = Style.UbuntuLinux
+                    //Style = Style.UbuntuLinux
                 });
             var result = await msBoxStandardWindow.Show();
             switch (result)
