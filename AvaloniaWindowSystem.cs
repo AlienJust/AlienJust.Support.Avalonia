@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Avalonia.Controls;
 using AlienJust.Support.UI.Contracts;
+using Avalonia.Controls;
+using Avalonia.Platform.Storage;
 using MessageBox.Avalonia;
 using MessageBox.Avalonia.DTO;
 using MessageBox.Avalonia.Enums;
-using System.Collections.Generic;
 
 namespace AlienJust.Support.Avalonia
 {
@@ -19,17 +21,18 @@ namespace AlienJust.Support.Avalonia
             _window = window;
         }
 
-        private List<FileDialogFilter> ParseFilters(string filter)
+        private static List<FilePickerFileType> ParseFilters(string filter)
         {
             var parts = filter.Split('|');
-            var filters = new List<FileDialogFilter>();
-            if (parts.Length %2 == 0)
+            var filters = new List<FilePickerFileType>();
+            if (parts.Length % 2 == 0)
             {
                 for (int i = 0; i < parts.Length; i += 2)
                 {
-                    var f = new FileDialogFilter();
-                    f.Name = parts[i];
-                    f.Extensions = new List<string>{parts[i + 1]};
+                    var f = new FilePickerFileType(parts[i])
+                    {
+                        Patterns = new List<string> { parts[i + 1] }
+                    };
                     filters.Add(f);
                 }
             }
@@ -37,35 +40,40 @@ namespace AlienJust.Support.Avalonia
         }
         public async Task<string> ShowOpenFileDialogAsync(string dialogTitle, string filter)
         {
-            var dialog = new OpenFileDialog { Title = dialogTitle, Filters = ParseFilters(filter) };
-            var result = await dialog.ShowAsync(_window);
+            var result = await _window.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions() { Title = dialogTitle, FileTypeFilter = ParseFilters(filter), AllowMultiple = false });
 
-            if (result != null && result.Length > 0)
+            if (result != null && result.Count > 0)
             {
-                return result[0];
+                return result[0].Path.AbsolutePath;
             }
             return null;
         }
 
         public async Task<string[]> ShowOpenFilesDialogAsync(string dialogTitle, string filter)
         {
-            var dialog = new OpenFileDialog { Title = dialogTitle, Filters = ParseFilters(filter) };
-            return await dialog.ShowAsync(_window);
+            var result = await _window.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions() { Title = dialogTitle, FileTypeFilter = ParseFilters(filter), AllowMultiple = true });
+            
+            if (result == null || result.Count == 0) return Array.Empty<string>();
+            else 
+            {
+                return result.Select(item => item.Path.AbsolutePath).ToArray();
+            }
         }
 
         public async Task<string> ShowOpenFolderDialogAsync(string dialogTitle, string defaultDirectory = null)
         {
-            var dialog = new OpenFolderDialog { Title = dialogTitle };
-            if (defaultDirectory != null) dialog.Directory = defaultDirectory;
+            var options = new FolderPickerOpenOptions() { Title = dialogTitle };
+            // TODO: defaultDirectory
+            //options.SuggestedStartLocation = new BclStorageFolder();
+            var result = await _window.StorageProvider.OpenFolderPickerAsync(options);
 
-            return await dialog.ShowAsync(_window);
+            return result == null || result.Count != 1 ? null : result[0].Path.AbsolutePath;
         }
 
         public async Task<string> ShowSaveFileDialogAsync(string dialogTitle, string filter)
         {
-            var dialog = new SaveFileDialog { Title = dialogTitle, Filters = ParseFilters(filter) };
-            return await dialog.ShowAsync(_window);
-            
+            var result = await _window.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions() { Title = dialogTitle, FileTypeChoices = ParseFilters(filter) });
+            return result?.Path.AbsolutePath;
         }
 
         public async Task ShowMessageBoxAsync(string message, string caption)
