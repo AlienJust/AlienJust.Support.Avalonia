@@ -6,15 +6,15 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>2023 Alexey Debelov</Copyright>
     <Description>Some stuff for Avalonia</Description>
-    <Version>11.0.0-preview5</Version>
+    <Version>11.0.0-preview8</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AlienJust.Support.Mvvm" Version="1.0.3"/>
     <PackageReference Include="AlienJust.Support.UI.Contracts" Version="1.0.6"/>
     <PackageReference Include="AlienJust.Support.Concurrent.Contracts" Version="1.0.3"/>
-    <PackageReference Include="Avalonia" Version="11.0.0-preview5"/>
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview5"/>
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview5"/>
-    <PackageReference Include="MessageBox.Avalonia" Version="2.3.1-prev5"/>
+    <PackageReference Include="Avalonia" Version="11.0.0-preview8"/>
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.0-preview8"/>
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.0-preview8"/>
+    <PackageReference Include="MessageBox.Avalonia" Version="2.3.1-prev7.0"/>
   </ItemGroup>
 </Project>
