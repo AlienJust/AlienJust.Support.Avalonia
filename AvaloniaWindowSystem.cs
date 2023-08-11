@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using AlienJust.Support.UI.Contracts;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using MessageBox.Avalonia;
-using MessageBox.Avalonia.DTO;
-using MessageBox.Avalonia.Enums;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
+using MsBox.Avalonia.Enums;
 
 namespace AlienJust.Support.Avalonia
 {
@@ -78,13 +78,13 @@ namespace AlienJust.Support.Avalonia
 
         public async Task ShowMessageBoxAsync(string message, string caption)
         {
-            var messageBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(caption, message);
-            await messageBoxStandardWindow.Show();
+            var messageBoxStandardWindow = MsBox.Avalonia.MessageBoxManager.GetMessageBoxStandard(caption, message);
+            await messageBoxStandardWindow.ShowAsync();
         }
 
         public async Task<BinaryChoise> ShowYesNoDialogAsync(string message, string caption)
         {
-            var msBoxStandardWindow = MessageBox.Avalonia.MessageBoxManager.GetMessageBoxStandardWindow(
+            var msBoxStandardWindow = MsBox.Avalonia.MessageBoxManager.GetMessageBoxStandard(
                 new MessageBoxStandardParams
                 {
                     ButtonDefinitions = ButtonEnum.YesNo,
@@ -93,7 +93,7 @@ namespace AlienJust.Support.Avalonia
                     Icon = Icon.Info,
                     //Style = Style.UbuntuLinux
                 });
-            var result = await msBoxStandardWindow.Show();
+            var result = await msBoxStandardWindow.ShowAsync();
             switch (result)
             {
                 case ButtonResult.Yes:
