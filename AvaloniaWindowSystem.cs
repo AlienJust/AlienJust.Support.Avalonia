@@ -44,7 +44,7 @@ namespace AlienJust.Support.Avalonia
 
             if (result != null && result.Count > 0)
             {
-                return result[0].Path.AbsolutePath;
+                return result[0].Path.LocalPath;
             }
             return null;
         }
@@ -52,11 +52,11 @@ namespace AlienJust.Support.Avalonia
         public async Task<string[]> ShowOpenFilesDialogAsync(string dialogTitle, string filter)
         {
             var result = await _window.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions() { Title = dialogTitle, FileTypeFilter = ParseFilters(filter), AllowMultiple = true });
-            
+
             if (result == null || result.Count == 0) return Array.Empty<string>();
-            else 
+            else
             {
-                return result.Select(item => item.Path.AbsolutePath).ToArray();
+                return result.Select(item => item.Path.LocalPath).ToArray();
             }
         }
 
@@ -67,24 +67,24 @@ namespace AlienJust.Support.Avalonia
             //options.SuggestedStartLocation = new BclStorageFolder();
             var result = await _window.StorageProvider.OpenFolderPickerAsync(options);
 
-            return result == null || result.Count != 1 ? null : result[0].Path.AbsolutePath;
+            return result == null || result.Count != 1 ? null : result[0].Path.LocalPath;
         }
 
         public async Task<string> ShowSaveFileDialogAsync(string dialogTitle, string filter)
         {
             var result = await _window.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions() { Title = dialogTitle, FileTypeChoices = ParseFilters(filter) });
-            return result?.Path.AbsolutePath;
+            return result?.Path.LocalPath;
         }
 
         public async Task ShowMessageBoxAsync(string message, string caption)
         {
-            var messageBoxStandardWindow = MsBox.Avalonia.MessageBoxManager.GetMessageBoxStandard(caption, message);
+            var messageBoxStandardWindow = MessageBoxManager.GetMessageBoxStandard(caption, message);
             await messageBoxStandardWindow.ShowAsync();
         }
 
         public async Task<BinaryChoise> ShowYesNoDialogAsync(string message, string caption)
         {
-            var msBoxStandardWindow = MsBox.Avalonia.MessageBoxManager.GetMessageBoxStandard(
+            var msBoxStandardWindow = MessageBoxManager.GetMessageBoxStandard(
                 new MessageBoxStandardParams
                 {
                     ButtonDefinitions = ButtonEnum.YesNo,
